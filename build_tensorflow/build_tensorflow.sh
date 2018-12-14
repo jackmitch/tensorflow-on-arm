@@ -87,7 +87,7 @@ function build_bazel()
   cd $WORKDIR
 
   if [ ! -f bazel-${BAZEL_VERSION}-dist.zip ]; then
-    wget --no-check-certificate https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
+    wget --no-check-certificate https://releases.bazel.build/${BAZEL_VERSION}/release/bazel-${BAZEL_VERSION}-dist.zip
   fi
 
   if [ ! -d bazel-${BAZEL_VERSION} ]; then
