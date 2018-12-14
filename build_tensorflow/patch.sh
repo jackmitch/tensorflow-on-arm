@@ -30,7 +30,8 @@ function tf_toolchain_patch()
   git apply << EOF
 diff --git a/BUILD.local_arm_compiler b/BUILD.local_arm_compiler
 new file mode 100644
-index 000000000..e5d8cc384
+index 0000000000..5887e3e440
+--- /dev/null
 +++ b/BUILD.local_arm_compiler
 @@ -0,0 +1,81 @@
 +package(default_visibility = ['//visibility:public'])
@@ -115,25 +116,26 @@ index 000000000..e5d8cc384
 +  ],
 +)
 diff --git a/WORKSPACE b/WORKSPACE
-index 17961829a6..7285580846 100644
+index 7057d3f149..3fedb4f543 100644
 --- a/WORKSPACE
 +++ b/WORKSPACE
-@@ -30,6 +30,12 @@ android_workspace()
+@@ -56,6 +56,12 @@ android_workspace()
  # Please add all new TensorFlow dependencies in workspace.bzl.
  tf_workspace()
-
+ 
 +new_local_repository(
 +    name = "local_arm_compiler",
 +    path = "$CROSSTOOL_DIR",
 +    build_file = "BUILD.local_arm_compiler",
 +)
 +
- new_http_archive(
+ http_archive(
      name = "inception_v1",
-     build_file = "models.BUILD",
+     build_file = "//:models.BUILD",
 diff --git a/tools/local_arm_compiler/BUILD b/tools/local_arm_compiler/BUILD
 new file mode 100644
-index 000000000..ccddd6d50
+index 0000000000..a3c0735ccc
+--- /dev/null
 +++ b/tools/local_arm_compiler/BUILD
 @@ -0,0 +1,50 @@
 +package(default_visibility = ["//visibility:public"])
@@ -188,7 +190,8 @@ index 000000000..ccddd6d50
 +)
 diff --git a/tools/local_arm_compiler/CROSSTOOL b/tools/local_arm_compiler/CROSSTOOL
 new file mode 100644
-index 000000000..3ff006da8
+index 0000000000..a7253ed03e
+--- /dev/null
 +++ b/tools/local_arm_compiler/CROSSTOOL
 @@ -0,0 +1,862 @@
 +major_version: "local"
